@@ -35,7 +35,7 @@ pipeline {
                 sh '''
                   rm -rf node_modules package-lock.json
                   npm cache clean --force
-                  npm install --legacy-peer-deps || true
+                  npm install
                 '''
             }
         }
@@ -43,14 +43,14 @@ pipeline {
         stage('Build Frontend') {
             steps {
                 sh '''
-                  npx vite build
+                  npm run build
                 '''
             }
         }
  
         stage('Verify Build Output') {
             steps {
-                sh 'ls -la dist'
+                sh 'ls -la build/ '
             }
         }
  
@@ -66,7 +66,7 @@ pipeline {
  
         stage('Invalidate CloudFront Cache') {
             when {
-                expression { env.CLOUDFRONT_DISTRIBUTION_ID != "REPLACE_WITH_YOUR_CF_ID" }
+                expression { env.CLOUDFRONT_DISTRIBUTION_ID != "E202ALDHVTXK81" }
             }
             steps {
                 withAWS(credentials: 'aws-credentials', region: "${AWS_REGION}") {
