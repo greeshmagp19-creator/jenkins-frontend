@@ -33,8 +33,7 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 sh '''
-                  sh 'npm config set fetch-retry-maxtimeout 120000'
-                  sh 'npm install --no-audit --prefer-offline
+                  sh 'npm install --no-audit --prefer-offline'
                 '''
             }
         }
