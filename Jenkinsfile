@@ -33,7 +33,7 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 sh '''
-                  sh 'npm install --no-audit --prefer-offline'
+                  sh 'npm install'
                 '''
             }
         }
