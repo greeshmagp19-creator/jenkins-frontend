@@ -52,7 +52,7 @@ pipeline{
         }
         stage('invalidate cloudfront'){
             when {
-                expression { env.CLOUDFRONT_DISTRIBUTION_ID != "E202ALDHVTXK81" }
+                expression { env.CLOUDFRONT_DISTRIBUTION_ID = "E202ALDHVTXK81" }
             }
             steps {
                 withAWS(credentials: 'aws-credentials', region: "${AWS_REGION}") {
