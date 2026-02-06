@@ -32,9 +32,8 @@ pipeline{
         
         stage ('build') {
             steps {
-                sh '''
-                   sh 'npm run build'
-                 '''
+                sh 'npm install'
+                sh 'npm run build'
             }
         }
         stage ('verify build output') {
