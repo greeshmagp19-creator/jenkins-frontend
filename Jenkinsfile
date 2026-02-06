@@ -38,14 +38,14 @@ pipeline{
         }
         stage ('verify build output') {
             steps {
-                 sh 'ls -la dist'
+                 sh 'ls -la build'
             }
         }
         stage('deploy to s3'){
             
             steps {
                 withAWS(credentials: 'aws-credentials', region: "${AWS_REGION}") {
-                    sh 'aws s3 sync dist/ s3://${S3_BUCKET}/ --delete'
+                    sh 'aws s3 sync build/ s3://${S3_BUCKET}/ --delete'
                 }
                 
             }
